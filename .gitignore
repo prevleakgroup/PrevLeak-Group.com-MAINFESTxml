@@ -1,3 +1,14 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Build outputs
+dist/
+.vite/
+
+# Firebase
+.firebase/
+
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
 #launch.json folder
