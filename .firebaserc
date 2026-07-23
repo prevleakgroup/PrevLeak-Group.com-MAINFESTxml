@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "prevleak-group"
+  },
+  "targets": {
+    "prevleak-group": {
+      "hosting": {
+        "admin-panel": [
+          "prevleak-admin"
+        ],
+        "marketing-landing": [
+          "prevleak-landing"
+        ]
+      }
+    }
+  }
+}
