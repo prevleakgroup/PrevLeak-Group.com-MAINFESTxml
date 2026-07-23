@@ -1,0 +1,36 @@
+name: Build and Deploy to Firebase Hosting
+
+on:
+  push:
+    branches: ["source-code-thulani"]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build admin app
+        run: npm run build --workspace=apps/admin
+
+      - name: Build landing app
+        run: npm run build --workspace=apps/landing
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          targets: admin-panel,marketing-landing
