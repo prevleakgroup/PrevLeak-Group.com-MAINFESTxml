@@ -65,5 +65,5 @@ jobs:
           if [ -n "${FIREBASE_TOKEN}" ]; then
             firebase deploy --only hosting --token "${FIREBASE_TOKEN}"
           else
-            echo "::warning::Skipping Firebase Hosting deployment because FIREBASE_TOKEN is not set."
+            echo "::warning::Skipping Firebase Hosting deployment. To enable it, configure the FIREBASE_TOKEN secret in repository settings."
           fi
