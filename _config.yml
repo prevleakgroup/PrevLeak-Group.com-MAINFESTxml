@@ -1,0 +1,6 @@
+title: PrevLeak Group™ Ecosystem
+description: Static landing page for the PrevLeak Group™ ecosystem.
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
