@@ -47,7 +47,7 @@
           if (candidate.origin === window.location.origin) {
             target = candidate;
           } else {
-            console.warn('Invalid redirect_uri: not same origin.');
+            console.warn('Invalid redirect_uri: not same origin.', candidate.origin);
           }
         } catch (error) {
           console.warn('Invalid redirect_uri: could not parse.');
