@@ -48,6 +48,7 @@
             target = candidate;
           }
         } catch (error) {
+          console.warn('Invalid redirect_uri:', error);
           // Fall back to the safe default below.
         }
       }
