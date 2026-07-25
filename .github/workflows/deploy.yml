@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["source-code-thulani"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PowerShell step
+        shell: pwsh
+        env:
+          GODADDY_API_KEY: ${{ secrets.GODADDY_API_KEY }}
+          GODADDY_API_SECRET: ${{ secrets.GODADDY_API_SECRET }}
+        run: |
+          Write-Host "Starting deploy"
+          # Access secret safely
+          $token = "${{ secrets.GH_PAT }}"
+          if (-not $token) { throw "GH_PAT missing" }
+          $headers = @{
+            Authorization = "sso-key $env:GODADDY_API_KEY`:$env:GODADDY_API_SECRET"
+            Accept        = "application/json"
+          }
+          Invoke-RestMethod -Uri "https://api.godaddy.com/v1/domains" -Headers $headers -Method Get
