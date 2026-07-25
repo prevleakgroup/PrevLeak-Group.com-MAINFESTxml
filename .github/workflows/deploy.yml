@@ -1,9 +1,10 @@
 name: Deploy
 
 on:
-  push:
-    branches: ["source-code-thulani"]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
@@ -17,12 +18,25 @@ jobs:
           GODADDY_API_KEY: ${{ secrets.GODADDY_API_KEY }}
           GODADDY_API_SECRET: ${{ secrets.GODADDY_API_SECRET }}
         run: |
+          Write-Host "::add-mask::$($env:GODADDY_API_KEY)"
+          Write-Host "::add-mask::$($env:GODADDY_API_SECRET)"
           Write-Host "Starting deploy"
-          # Access secret safely
-          $token = "${{ secrets.GH_PAT }}"
-          if (-not $token) { throw "GH_PAT missing" }
+          $authValue = @('sso-key ', $env:GODADDY_API_KEY, ':', $env:GODADDY_API_SECRET) -join ''
           $headers = @{
-            Authorization = "sso-key $env:GODADDY_API_KEY`:$env:GODADDY_API_SECRET"
+            Authorization = $authValue
             Accept        = "application/json"
           }
-          Invoke-RestMethod -Uri "https://api.godaddy.com/v1/domains" -Headers $headers -Method Get
+          # Placeholder preflight check until deployment actions are added.
+          try {
+            $domains = Invoke-RestMethod -Uri "https://api.godaddy.com/v1/domains" -Headers $headers -Method Get
+          } catch {
+            $statusCode = if ($_.Exception.Response) { [int]$_.Exception.Response.StatusCode } else { $null }
+            $details = if ($statusCode) { " (HTTP $statusCode)" } else { "" }
+            throw "GoDaddy API request failed$details"
+          }
+          if ($null -eq $domains) { throw "GoDaddy API returned no data" }
+          if (@($domains).Count -eq 0) {
+            Write-Host "GoDaddy returned no domains"
+          } else {
+            Write-Host ("GoDaddy returned {0} domain(s)" -f @($domains).Count)
+          }
