@@ -37,11 +37,23 @@
   <script>
     (() => {
       const params = new URLSearchParams(window.location.search);
-      const redirectUri = params.get('redirect_uri') || '/';
-      const target = new URL(redirectUri, window.location.origin);
+      const allowedParams = new Set(['code', 'state', 'error', 'error_description', 'error_uri']);
+      let target = new URL('/', window.location.origin);
+
+      const redirectUri = params.get('redirect_uri');
+      if (redirectUri) {
+        try {
+          const candidate = new URL(redirectUri, window.location.origin);
+          if (candidate.origin === window.location.origin) {
+            target = candidate;
+          }
+        } catch (_) {
+          // Fall back to the safe default below.
+        }
+      }
 
       for (const [key, value] of params.entries()) {
-        if (key !== 'redirect_uri') {
+        if (key !== 'redirect_uri' && allowedParams.has(key)) {
           target.searchParams.set(key, value);
         }
       }
