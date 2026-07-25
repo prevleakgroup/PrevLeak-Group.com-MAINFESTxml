@@ -63,7 +63,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           if [ -n "${FIREBASE_TOKEN}" ]; then
-            firebase deploy --only hosting --project prevleak-group --token "${FIREBASE_TOKEN}"
+            firebase deploy --only hosting --token "${FIREBASE_TOKEN}"
           else
             echo "::warning::Skipping Firebase Hosting deployment because FIREBASE_TOKEN is not set."
           fi
