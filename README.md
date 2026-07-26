@@ -34,3 +34,15 @@ thulaniprevleak@cloudshell:~ (saferide-peld8)$ 6Lf1vQQtAAAAAFrBJnFPhCkpIalXJN78v
 using Google.Api.Gax.ResourceNames;
 end6Lf1vQQtAAAAAHQRrgb8fhPzQ71pmzH_cv8fdf3cPTCHA tag does not match the action you are expecting to score"ore');"););Q71pmzH_cv8fdf3c", string token = "action-token", st
 saferide-peld8
+
+## Firebase App Distribution
+
+Authenticate with a service account key, then distribute the Android APK without `--token`:
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="path/to/service-account-key.json"
+
+firebase appdistribution:distribute app/build/outputs/apk/release/app-release.apk \
+  --app "$FIREBASE_APP_ID_ANDROID" \
+  --groups "$FIREBASE_TESTER_GROUPS"
+```
