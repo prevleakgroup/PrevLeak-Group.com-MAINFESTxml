@@ -1,4 +1,7 @@
+import { BRAND_NAME, BRAND_TAGLINE } from '../../shared/brand.js';
+
 const app = document.querySelector('#app');
 if (app) {
-  app.innerHTML = `<h1>PrevLeak Group</h1>`;
+  document.title = BRAND_NAME;
+  app.innerHTML = `<h1>${BRAND_NAME}</h1><p>${BRAND_TAGLINE}</p>`;
 }
