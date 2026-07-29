@@ -1,0 +1,52 @@
+{
+  "workbench.editor.alwaysShowEditorActions": true,
+  "githubPullRequests.pullRequestDescription": "Copilot",
+  "git.autofetch": true,
+  "editor.pasteAs.preferences": [
+    "chat.attach.attachments"
+  ],
+  "files.autoSave": "afterDelay",
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.md": "vscode.markdown.preview.editor",
+    "*.vsix": "default",
+    "*.msi": "default",
+    "*.zip": "default"
+  },
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "editor.largeFileOptimizations": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "chat.sessionSync.enabled": true,
+  "files.exclude": {
+    "": true
+  },
+  "redhat.telemetry.enabled": true,
+  "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+  "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+  "chat.permissions.default": "autoApprove",
+  "workbench.editor.autoLockGroups": {
+    "default": true,
+    "workbench.editor.chatDebug": true,
+    "workbench.editor.chatSession": true,
+    "workbench.editor.browser": true,
+    "notebookOutputEditor": true,
+    "jupyter-notebook": true,
+    "vscode.markdown.editor": true,
+    "imagePreview.previewEditor": true,
+    "vscode.audioPreview": true,
+    "jsProfileVisualizer.cpuprofile.table": true,
+    "jsProfileVisualizer.heapprofile.table": true,
+    "workbench.input.interactive": true,
+    "mainThreadWebview-markdown.preview": true,
+    "pdf.preview": true,
+    "decompiled.javaClass": true,
+    "jsProfileVisualizer.heapsnapshot.table": true
+  },
+  "workbench.editor.defaultBinaryEditor": "decompiled.javaClass",
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.limit.value": 1000,
+  "workbench.editor.useModal": "some"
+}
