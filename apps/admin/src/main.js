@@ -127,7 +127,7 @@ if (app) {
   };
 
   document.querySelectorAll('.filter').forEach((button) => button.addEventListener('click', () => {
-    document.querySelector('.filter.active').classList.remove('active');
+    document.querySelector('.filter.active')?.classList.remove('active');
     button.classList.add('active');
     selectedFilter = button.dataset.filter;
     updateRows();
